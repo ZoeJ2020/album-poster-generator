@@ -6,28 +6,25 @@ body {
     color: #212529;
 }
 
-h1 {
-    color: #da5d5d;
-    text-align: center;
-    padding: 20px;
-    background-color: #007bff;
-    border-bottom: 2px solid #0056b3;
+.album_list{
+    display: flex;
 }
 
-p {
-    text-align: center;
-    font-size: 1.2em;
-    color: #495057;
+.text_list{
+    padding: 0;
+    margin-top: 11px;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-top: 50px;
+.album_container{
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    display: flex;
+    padding: 0 4px;
+}
+
+.album_container > *{
+    display: block;
+    margin: auto;
 }
 
 a {
@@ -37,4 +34,39 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.grid-item{
+    border: 1px solid rgba(161, 161, 161, 0.209);
+    padding: 20px;
+    font-size: 30px;
+}
+
+.spotify-logo{
+    padding-bottom: 20px;
+}
+
+.album-title, .album-info{
+    max-width: 250px;
+}
+
+.album-info{
+    color: #505a5f !important;
+}
+
+.btn-generate{
+    background-color: #f8f9fa !important;
+}
+
+.btn-spotify{
+    background-color: #1ED760 !important;
+}
+
+.btn-spotify:hover{
+    text-decoration: none;
 }
