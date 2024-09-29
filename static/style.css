@@ -59,6 +59,15 @@ a:hover {
     color: #505a5f !important;
 }
 
+.track_count{
+    color: #858b8d !important;
+    text-decoration: underline;
+}
+
+.track_count:hover{
+    cursor: pointer;
+}
+
 .btn-generate{
     background-color: #f8f9fa !important;
 }
@@ -69,4 +78,11 @@ a:hover {
 
 .btn-spotify:hover{
     text-decoration: none;
+}
+
+@media (max-width: 1200px) {
+    .grid-container{
+        display: grid;
+        grid-template-columns: auto;
+    }
 }
