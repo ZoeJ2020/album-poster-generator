@@ -80,6 +80,13 @@ a:hover {
     text-decoration: none;
 }
 
+#preview-image{
+    /* default CSS - will change using JS */
+    width: 8cm;
+    background: #F6F7FA;
+    transition: 200ms;
+}
+
 @media (max-width: 1200px) {
     .grid-container{
         display: grid;

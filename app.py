@@ -1,9 +1,12 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_file
+import subprocess
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 # Function to find albums by name
 import concurrent.futures
+
+from functions.generatePoster import generatePoster
 
 # Set environment variables for Spotipy
 ID : str = os.getenv('SPOTIPY_CLIENT_ID')
@@ -46,10 +49,9 @@ def findAlbums(user_input):
     
     resultList = []
 
-    # Gather album metadata first
     album_data = []
     album_ids = []
-    
+
     for album in albums:
         title = album['name']
         artist = album['artists'][0]['name']
@@ -69,9 +71,8 @@ def findAlbums(user_input):
     for i, (title, artist, released, image, url) in enumerate(album_data):
         track_list = track_lists[i]
         track_count = len(track_list)
-        album_id = album_ids[i]  # Retrieve album_id
+        album_id = album_ids[i]
 
-        # Make sure you're passing album_id as the 6th argument
         info = AlbumInformation(title, artist, released, track_list, track_count, album_id, image, url)
         resultList.append(info)
 
@@ -89,6 +90,17 @@ def index():
         album_results = findAlbums(user_input)
 
     return render_template('index.html', user_input=user_input, album_results=album_results)
+
+@app.route('/generate_poster', methods=['POST'])
+def generate_poster():
+    if request.method == 'POST':
+        image = str(request.form['album_image'])
+        title = str(request.form['album_title'])
+        year = str(request.form['album_released'])[:4]
+        artist = str(request.form['album_artist'])
+        tracks = request.form.getlist('track_list')
+
+    return render_template('poster.html', image=image, title=title, year=year, artist=artist, tracks=tracks)
 
 if __name__ == '__main__':
     app.run(debug=True)

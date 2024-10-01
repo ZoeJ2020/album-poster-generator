@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/posterStyle.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>{{ title }}</h1>
+        <h3>{{ artist }}</h3>
+        <p>{{ year }}</p>
+        <img src="{{ image }}" alt="Album Cover" class="cover-img" />
+        <hr>
+        <ol>
+            {% for track in tracks %}
+                <li>{{ track }}</li>
+            {% endfor %}
+        </ol>
+        <footer>made with albumpostifier</footer>
+    </div>
+</body>
+</html>
