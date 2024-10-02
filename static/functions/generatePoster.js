@@ -1,56 +1,79 @@
-// Set width and height (IMPLEMENT AFTER OTHER FUNCTIONS)
-function setSize(){
-    // default is A4, will change with user input once feature is added
+let alert = document.getElementById('poster-alert');
+alert.classList.add('alert-info')
+alert.innerHTML = "Generating poster...";
+
+document.body.onload = function() {
+    alert.innerHTML = "Generating poster...";
+
+    const albumCover = document.getElementById('cover-img');
+
+    // Function to convert an image URL to a Data URL (to avoid cross-origin issues)
+    function convertToDataURL(url, callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                callback(reader.result);  // Pass the data URL to the callback
+            };
+            reader.readAsDataURL(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
+
+    // Function to generate the poster after the image is loaded
+    function generatePoster() {
+        // Set poster size and theme before generating the image
+        setSize();
+        setTheme();
+
+        // Use html2canvas to take a screenshot of the poster container
+        html2canvas(document.getElementById('poster-container')).then(canvas => {
+            // Append the generated canvas to the final image div
+            document.getElementById('final-image').innerHTML = '';  // Clear previous content
+            document.getElementById('final-image').appendChild(canvas);
+
+        });
+    }
+
+    // First, convert the album cover image to a Data URL
+    convertToDataURL(albumCover.src, function(dataUrl) {
+        albumCover.src = dataUrl;  // Replace the image src with the Data URL
+        // After setting the data URL, check if the image is loaded
+        albumCover.onload = function() {
+            generatePoster();  // Generate the poster after the image is loaded
+            alert.classList.remove('alert-info')
+            alert.classList.add('alert-success')
+            alert.innerHTML = "Poster generated! Use the button provided to download the image, or right-click to 'Save Image As...'. Please do not sell or redistribute these images.";
+        };
+    });
+};
+
+// Set width and height
+function setSize() {
     const width = '210mm';
     const height = '297mm';
 
-    poster = document.getElementById('poster-container');
+    const poster = document.getElementById('poster-container');
     poster.style.width = width;
     poster.style.height = height;
 }
 
-// Set dark/light mode
-function setTheme(){
-    theme = document.getElementById('theme').innerText;
-    
-    if(theme == 'light'){
+// Set dark/light theme
+function setTheme() {
+    const theme = document.getElementById('theme').innerText;
+    let textColor, bgColor;
+
+    if (theme === 'light') {
         textColor = 'rgb(30, 31, 33)';
         bgColor = 'rgb(246, 247, 250)';
-    }
-
-    else if(theme == 'dark'){
+    } else if (theme === 'dark') {
         textColor = 'rgb(246, 247, 250)';
         bgColor = 'rgb(30, 31, 33)';
     }
 
-    poster = document.getElementById('poster-container');
+    const poster = document.getElementById('poster-container');
     poster.style.color = textColor;
     poster.style.backgroundColor = bgColor;
-
-}
-
-// Change CSS depending on orientation setting
-function setOrient(){
-    // orient = document.getElementById('orientation').innerText;
-    
-    // if(orient == 'portrait'){
-
-    // }
-
-    // else if(orient == 'landscape'){
-
-    // }
-
-    // poster = document.getElementById('poster-container');
-    // poster.style.color = textColor;
-    // poster.style.backgroundColor = bgColor;
-}
-
-// Main function
-function generatePoster(data){
-    console.log(data['artist'])
-    alert(data['title']);
-    // setSize();
-    // setTheme();
-    // setOrient();
 }

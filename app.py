@@ -6,8 +6,6 @@ from spotipy.oauth2 import SpotifyOAuth
 # Function to find albums by name
 import concurrent.futures
 
-from functions.generatePoster import generatePoster
-
 # Set environment variables for Spotipy
 ID : str = os.getenv('SPOTIPY_CLIENT_ID')
 SECRET : str = os.getenv('SPOTIPY_CLIENT_SECRET')
@@ -100,7 +98,10 @@ def generate_poster():
         artist = str(request.form['album_artist'])
         tracks = request.form.getlist('track_list')
 
-    return render_template('poster.html', image=image, title=title, year=year, artist=artist, tracks=tracks)
+        orientation = str(request.form['orientation'])
+        theme =  str(request.form['bg-color'])
+
+    return render_template('poster.html', orientation=orientation, theme=theme, image=image, title=title, year=year, artist=artist, tracks=tracks)
 
 if __name__ == '__main__':
     app.run(debug=True)
