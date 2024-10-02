@@ -80,11 +80,22 @@ a:hover {
     text-decoration: none;
 }
 
-#preview-image{
+.poster-modal-display{
+    min-width: 500px;
+    min-height: 500px;
+    align-content: center;
+}
+
+.poster-modal-container > *{
+    width: 50%;
+}
+
+.preview-image{
     /* default CSS - will change using JS */
-    width: 8cm;
-    background: #F6F7FA;
-    transition: 200ms;
+    width: 500px;
+    background-color: #F6F7FA;
+    display: flex;
+    margin: auto;
 }
 
 @media (max-width: 1200px) {

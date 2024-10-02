@@ -1,0 +1,25 @@
+@font-face {
+    font-family: posterRegular;
+    src: url(/static/fonts/CooperHewitt-Medium.otf);
+    font-weight: normal;
+  }
+
+  @font-face {
+    font-family: posterLight;
+    src: url(/static/fonts/CooperHewitt-Light.otf);
+    font-weight: normal;
+  }
+
+body{
+    font-family: posterRegular;
+    font-size: 100%;
+}   
+
+.secondary{
+    font-family: posterLight;
+    font-size: 100%;
+}
+
+.tracklist{
+    font-size: 20%;
+}
