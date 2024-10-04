@@ -50,7 +50,7 @@ h1{
 }
 
 #title-container{
-  height: 9%;
+  max-height: 9%;
 }
 
 #tracklist-container{
