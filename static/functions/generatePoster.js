@@ -40,12 +40,8 @@ document.body.onload = function() {
     function resizeText(name) {
         const container = document.getElementById(name+'-container');
         const text = document.getElementById(name);
-        alert(text)
         let fontSize = parseInt(window.getComputedStyle(text).fontSize);
       
-        alert(text.scrollHeight > container.clientHeight && fontSize > 10)
-        alert(text.scrollHeight)
-        alert(container.style.height)
         // Reduce the font size until the text fits inside the container
         while (text.scrollHeight > container.clientHeight && fontSize > 10) {
           fontSize -= 1;
