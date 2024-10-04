@@ -7,19 +7,73 @@
   @font-face {
     font-family: posterLight;
     src: url(/static/fonts/CooperHewitt-Light.otf);
-    font-weight: normal;
+    font-weight: lighter;
   }
 
-body{
-    font-family: posterRegular;
-    font-size: 100%;
-}   
+  @font-face {
+    font-family: posterBold;
+    src: url(/static/fonts/CooperHewitt-Bold.otf);
+    font-weight: bold;
+  }
 
-.secondary{
-    font-family: posterLight;
-    font-size: 100%;
+
+h1{
+  padding-top: 1%;
+  font-family: posterBold;
 }
 
-.tracklist{
-    font-size: 20%;
+#poster-container{
+    display: flex;
+    flex-direction: column;
+    font-family: posterLight !important;
+    font-size: 100%;
+    padding: 4.5% 6%;
+}   
+
+#cover-img{
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.secondary{
+  margin: 20px 0 8px;
+  font-family: posterLight !important;
+  font-size: 20px;
+}
+
+.vr{
+  opacity: 1 !important;
+  width: 100% !important;
+  min-height: 7px !important;
+}
+
+#title-container{
+  height: 9%;
+}
+
+#tracklist-container{
+  height: 100px;
+}
+
+#tracklist{
+    font-size: 120%;
+    list-style-type: none;
+    padding: 4% 0 0 0;
+}
+
+#tracklist strong{
+  margin: 0 4px;
+  font-family: posterRegular;
+}
+
+footer{
+  font-family: posterLight !important;
+  margin: auto auto 0 auto;
+  font-size: 10px;
+}
+
+footer span{
+  border-bottom: 1px solid;
 }

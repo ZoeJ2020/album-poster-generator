@@ -93,7 +93,7 @@ def index():
 def generate_poster():
     if request.method == 'POST':
         image = str(request.form['album_image'])
-        title = str(request.form['album_title'])
+        title = str(request.form['album_title']).upper()
         year = str(request.form['album_released'])[:4]
         artist = str(request.form['album_artist'])
         tracks = request.form.getlist('track_list')

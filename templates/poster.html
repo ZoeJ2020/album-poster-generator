@@ -15,25 +15,31 @@
     <p class="lead text-center">
         Powered by Spotipy, Flask and HTML/CSS
     </p>
-    
+
     <span id="poster-alert" class="alert" role="alert"></span>
 
     <div id="final-image"></div>
     <span hidden id="orientation">{{orientation}}</span>
     <span hidden id="theme">{{theme}}</span>
-    <div id="poster-container" style="position: absolute; top: -9999px;">
-        <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
-        <h1>{{ title }}</h1>
+    <div id="poster-container">
+        <div class="cover-container">
+            <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
+        </div>
+        <div id="title-container">
+            <h1 id="title">{{ title }}</h1>
+        </div>
         <span class="secondary">{{year}} - {{ artist }}</span>
-        <hr>
-        <ol class="tracklist">
-            {% for track in tracks %}
-                <li>{{ track }}</li>
-            {% endfor %}
-        </ol>
-        <footer>made with albumpostify</footer>
+        <div class="vr"></div>
+        <div id="tracklist-container">
+            <div id="tracklist">
+                {% for track in tracks %}
+                    {{ track }} <strong>|</strong>
+                {% endfor %}
+            </div>
+        </div>
+        <footer class="footer mt-auto"><span>made with albumpostify</span></footer>
     </div>
+    <script src="/static/functions/generatePoster.js" type="module"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="/static/functions/generatePoster.js" type="module"></script>
 </html>

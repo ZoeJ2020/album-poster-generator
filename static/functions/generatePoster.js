@@ -1,9 +1,9 @@
-let alert = document.getElementById('poster-alert');
-alert.classList.add('alert-info')
-alert.innerHTML = "Generating poster...";
+let alertPopup = document.getElementById('poster-alert');
+alertPopup.classList.add('alert-info')
+alertPopup.innerHTML = "Generating poster...";
 
 document.body.onload = function() {
-    alert.innerHTML = "Generating poster...";
+    alertPopup.innerHTML = "Generating poster...";
 
     const albumCover = document.getElementById('cover-img');
 
@@ -37,15 +37,37 @@ document.body.onload = function() {
         });
     }
 
+    function resizeText(name) {
+        const container = document.getElementById(name+'-container');
+        const text = document.getElementById(name);
+        alert(text)
+        let fontSize = parseInt(window.getComputedStyle(text).fontSize);
+      
+        alert(text.scrollHeight > container.clientHeight && fontSize > 10)
+        alert(text.scrollHeight)
+        alert(container.style.height)
+        // Reduce the font size until the text fits inside the container
+        while (text.scrollHeight > container.clientHeight && fontSize > 10) {
+          fontSize -= 1;
+          text.style.fontSize = fontSize + 'px';
+        }
+      }      
+
+
     // First, convert the album cover image to a Data URL
     convertToDataURL(albumCover.src, function(dataUrl) {
         albumCover.src = dataUrl;  // Replace the image src with the Data URL
         // After setting the data URL, check if the image is loaded
+
         albumCover.onload = function() {
+            resizeText('tracklist');
+            resizeText('title');
             generatePoster();  // Generate the poster after the image is loaded
-            alert.classList.remove('alert-info')
-            alert.classList.add('alert-success')
-            alert.innerHTML = "Poster generated! Use the button provided to download the image, or right-click to 'Save Image As...'. Please do not sell or redistribute these images.";
+            // resizeText('tracklist');
+
+            alertPopup.classList.remove('alert-info')
+            alertPopup.classList.add('alert-success')
+            alertPopup.innerHTML = "Poster generated! Use the button provided to download the image, or right-click to 'Save Image As...'. Please do not sell or redistribute these images.";
         };
     });
 };
