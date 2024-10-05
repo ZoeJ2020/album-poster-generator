@@ -22,20 +22,25 @@
     <span hidden id="orientation">{{orientation}}</span>
     <span hidden id="theme">{{theme}}</span>
     <div id="poster-container">
-        <div class="cover-container">
-            <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
-        </div>
-        <div id="title-container">
-            <h1 id="title">{{ title }}</h1>
-        </div>
-        <span class="secondary">{{year}} - {{ artist }}</span>
-        <div class="vr"></div>
-        <div id="tracklist-container">
-            <div id="tracklist">
-                {% for track in tracks %}
-                    {{ track }} <strong>|</strong>
-                {% endfor %}
+        <div class="poster-top-container">
+            <div class="cover-container">
+                <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
             </div>
+        </div>
+
+        <div class="poster-bottom-container">
+            <div id="title-container">
+                <h1 id="title">{{ title }}</h1>
+            </div>
+            <span class="secondary">{{year}} - {{ artist }}</span>
+            <div class="vr"></div>
+            <div id="tracklist-container">
+                <div id="tracklist">
+                    {% for track in tracks %}
+                        {{ track }} <strong>|</strong>
+                    {% endfor %}
+                </div>
+            </div> 
         </div>
         <footer class="footer mt-auto"><span>made with albumpostify</span></footer>
     </div>

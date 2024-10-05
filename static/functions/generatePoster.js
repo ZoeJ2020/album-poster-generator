@@ -25,6 +25,7 @@ document.body.onload = function() {
     // Function to generate the poster after the image is loaded
     function generatePoster() {
         // Set poster size and theme before generating the image
+        setOrient();
         setSize();
         setTheme();
 
@@ -43,9 +44,10 @@ document.body.onload = function() {
         let fontSize = parseInt(window.getComputedStyle(text).fontSize);
       
         // Reduce the font size until the text fits inside the container
-        while (text.scrollHeight > container.clientHeight && fontSize > 10) {
+        while (text.clientHeight > container.clientHeight) {
           fontSize -= 1;
           text.style.fontSize = fontSize + 'px';
+          text.offsetHeight;
         }
       }      
 
@@ -70,8 +72,21 @@ document.body.onload = function() {
 
 // Set width and height
 function setSize() {
-    const width = '210mm';
-    const height = '297mm';
+    const x = '210mm';
+    const y = '297mm';
+
+    let width = '';
+    let height = '';
+
+    const orient = document.getElementById('orientation').innerText;
+
+    if(orient == "landscape"){
+        width = y;
+        height = x;
+    } else if(orient == "portrait"){
+        width = x;
+        height = y;
+    }
 
     const poster = document.getElementById('poster-container');
     poster.style.width = width;
@@ -94,4 +109,22 @@ function setTheme() {
     const poster = document.getElementById('poster-container');
     poster.style.color = textColor;
     poster.style.backgroundColor = bgColor;
+}
+
+function setOrient() {
+    const orient = document.getElementById('orientation').innerText;
+
+    if (orient === 'landscape') {
+        // if landscape, add landscape class to required elements.
+        const poster = document.getElementById('poster-container');
+        const titleContainer = document.getElementById('title-container')
+
+        poster.style.flexDirection = "row";
+        titleContainer.style.height = "22%";
+
+        for (let child of poster.children){
+            child.classList.add("landscape")
+        }
+
+    } 
 }
