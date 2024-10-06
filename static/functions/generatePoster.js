@@ -1,4 +1,4 @@
-let alertPopup = document.getElementById('poster-alert');
+let alertPopup = document.getElementById('alert-desc');
 alertPopup.classList.add('alert-info')
 alertPopup.innerHTML = "Generating poster...";
 
@@ -36,6 +36,8 @@ document.body.onload = function() {
             document.getElementById('final-image').appendChild(canvas);
 
         });
+
+
     }
 
     function resizeText(name) {
@@ -61,7 +63,9 @@ document.body.onload = function() {
             resizeText('tracklist');
             resizeText('title');
             generatePoster();  // Generate the poster after the image is loaded
-            // resizeText('tracklist');
+
+            const poster = document.getElementById('poster-container');
+            poster.style.display = "none";
 
             alertPopup.classList.remove('alert-info')
             alertPopup.classList.add('alert-success')
@@ -117,14 +121,13 @@ function setOrient() {
     if (orient === 'landscape') {
         // if landscape, add landscape class to required elements.
         const poster = document.getElementById('poster-container');
-        const titleContainer = document.getElementById('title-container')
+        const titleContainer = document.getElementById('title-container');
 
         poster.style.flexDirection = "row";
         titleContainer.style.height = "22%";
 
         for (let child of poster.children){
-            child.classList.add("landscape")
+            child.classList.add("landscape");
         }
-
     } 
 }
