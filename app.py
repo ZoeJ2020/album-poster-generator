@@ -1,21 +1,19 @@
-from flask import Flask, request, render_template, send_file
-import subprocess
+from flask import Flask, request, render_template
 import os
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials
 # Function to find albums by name
 import concurrent.futures
 
 # Set environment variables for Spotipy
 ID : str = os.getenv('SPOTIPY_CLIENT_ID')
 SECRET : str = os.getenv('SPOTIPY_CLIENT_SECRET')
-URI : str = os.getenv('SPOTIPY_REDIRECT_URI')
 
 # Spotipy authorization
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=ID,
-                                               client_secret=SECRET,
-                                               redirect_uri=URI,
-                                               scope="user-library-read"))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
+    client_id=ID,
+    client_secret=SECRET
+))
 
 class AlbumInformation:
     def __init__ (self, title, artist, released, track_list, track_count, album_id, image, url):
@@ -89,7 +87,7 @@ def index():
 
     return render_template('index.html', user_input=user_input, album_results=album_results)
 
-@app.route('/generate_poster', methods=['POST'])
+@app.route('/generate', methods=['POST'])
 def generate_poster():
     if request.method == 'POST':
         image = str(request.form['album_image'])

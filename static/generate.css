@@ -1,0 +1,18 @@
+#complete-poster{
+    display: none;
+}
+
+#download-button{
+    display: none;
+}
+
+#final-image{
+    width: 100% !important;
+    height: auto !important;
+}
+
+#final-image > img{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}

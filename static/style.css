@@ -38,7 +38,7 @@ a:hover {
 
 .grid-container{
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 }
 
 .grid-item{
@@ -49,6 +49,7 @@ a:hover {
 
 .spotify-logo{
     padding-bottom: 20px;
+    width: 125px;;
 }
 
 .album-title, .album-info{
@@ -98,9 +99,30 @@ a:hover {
     margin: auto;
 }
 
-@media (max-width: 1200px) {
-    .grid-container{
-        display: grid;
-        grid-template-columns: auto;
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    .album-image{
+        border-radius: 2px;
     }
 }
+
+/* Medium devices (tablets, 768px and up) */
+/* @media (min-width: 768px) { ... } */
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .grid-container{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .album-image{
+        border-radius: 4px;
+    }
+ }
+
+/* X-Large devices (large desktops, 1200px and up) */
+/* @media (min-width: 1200px) { ... } */
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+/* @media (min-width: 1400px) { ... } */

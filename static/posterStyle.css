@@ -16,12 +16,6 @@
   font-weight: bold;
 }
 
-
-h1{
-padding-top: 1%;
-font-family: posterBold;
-}
-
 #poster-container{
   display: flex;
   flex-direction: column;
@@ -32,37 +26,40 @@ font-family: posterBold;
 }  
 
 #cover-img{
-display: flex;
-margin: auto;
-width: 100%;
-padding-bottom: 30px;
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding-bottom: 30px;
+  border-radius: 4px;
 }
 
 .secondary{
-margin: 20px 0 8px;
-font-family: posterLight !important;
-font-size: 20px;
+  margin: 20px 0 8px;
+  font-family: posterLight !important;
+  font-size: 20px;
 }
 
 .vr{
-opacity: 1 !important;
-width: 100% !important;
-min-height: 7px !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  min-height: 7px !important;
 }
 
 #title-container{
-height: 73px;
-margin-bottom: 4%;
+  height: 55px;
+  margin-bottom: 4%;
 }
 
 #title{
-margin: 0;
-font-size: 184%;
-padding: 0 0 3% 0;
+  margin: 0;
+  font-size: 26px;
+  padding: 0 0 0 0;
+  padding-top: 1%;
+  font-family: posterBold;
 }
 
 #tracklist-container{
-height: 160px;
+  height: 140px;
 }
 
 #tracklist{
@@ -72,34 +69,45 @@ height: 160px;
 }
 
 #tracklist strong{
-margin: 0 4px;
-font-family: posterRegular;
+  margin: 0 4px;
+  font-family: posterRegular;
 }
 
 footer{
-font-family: posterLight !important;
-margin: auto auto 0 auto;
-font-size: 10px;
+  font-family: posterLight !important;
+  margin: auto auto 0 auto;
+  font-size: 10px;
+}
+
+footer > img{
+  width: 22px;
+  display: flex;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+footer > p{
+  margin-bottom: 0;
 }
 
 
 /* landscape poster CSS changes */
-#title-container.landscape{
-  height: 18%;
+#title-container.landscape > #title{
+  font-size: 38px
 }
 
 .poster-top-container.landscape, .poster-bottom-container.landscape{
-width: 50%;
-margin: 10% 1%;
+  width: 50%;
+  margin: 10% 1%;
 }
 
 footer.landscape{
-position: absolute;
-bottom: 30px;
-left: 50%;
-transform: translateX(-50%);
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 footer span{
-border-bottom: 1px solid;
+  border-bottom: 1px solid;
 }

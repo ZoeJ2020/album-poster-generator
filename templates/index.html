@@ -45,8 +45,8 @@
             {% for album in album_results %}
             <div class="album_container grid-item">
                 <div class="image_container">
-                    <img class="d-flex spotify-logo" style="width: 125px;" src="/static/logo/Spotify_Full_Logo_RGB_Green.png" width="50px" alt="">
-                    <img src="{{ album.image }}" alt="{{ album.title }} album cover" width="200">
+                    <img class="d-flex spotify-logo" src="/static/logo/Spotify_Full_Logo_RGB_Green.png" width="50px" alt="">
+                    <img class="album-image" src="{{ album.image }}" alt="{{ album.title }} album cover" width="200">
                 </div>
                 <ul class="text_list">
                     <p class="h5 album-title">{{ album.title }}</p>
@@ -98,7 +98,7 @@
                                 <div class="poster-modal-settings">
                                     <h2>Settings</h2>
                                     <!-- Form to generate the poster -->
-                                    <form class="poster-form" id="poster-form" method="POST" action="/generate_poster">
+                                    <form class="poster-form" id="poster-form" method="POST" action="/generate">
                                         <div class="form-group">
                                             <!-- hidden album info -->
                                             <input type="hidden" name="album_image" value="{{ album.image }}">
