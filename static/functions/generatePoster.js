@@ -1,6 +1,5 @@
 let alertPopup = document.getElementById('alert-desc');
-alertPopup.classList.add('alert-info')
-alertPopup.innerHTML = "Generating poster...";
+alertPopup.classList.add('alert-info');
 
 document.body.onload = function() {
     alertPopup.innerHTML = "Generating poster...";
@@ -31,9 +30,29 @@ document.body.onload = function() {
 
         // Use html2canvas to take a screenshot of the poster container
         html2canvas(document.getElementById('poster-container')).then(canvas => {
-            // Append the generated canvas to the final image div
+
+            // Append canvas to its own div for hiding after image creation
+            let canvasDiv = document.getElementById('complete-poster');
+            canvasDiv.appendChild(canvas);
+
+            // Turn canvas into image and put image in container
             document.getElementById('final-image').innerHTML = '';  // Clear previous content
-            document.getElementById('final-image').appendChild(canvas);
+            const canvasURL = canvas.toDataURL();
+            const canvasImg = document.createElement('img');
+            canvasImg.src = canvasURL;
+
+            document.getElementById('final-image').appendChild(canvasImg);
+
+            // convert canvas to dataUrl
+            let downloadBtn = document.getElementById('download-button');
+
+            // create link to download URL-ified canvas
+            var link = document.createElement('a');
+            link.download = 'filename.png';
+            link.href = canvasURL;
+
+            // click link when download button is pressed
+            downloadBtn.addEventListener("click", function(){ link.click(); });
 
         });
 
