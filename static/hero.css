@@ -1,0 +1,23 @@
+.hero-container{
+    width: 100vw;
+    height: 80vh;
+    margin: auto;
+}
+
+.gradient-background {
+    background: linear-gradient(167deg,#0059d6,#00d685,#3aa1b9), #00d685;
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+}
+  
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}

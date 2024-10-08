@@ -1,5 +1,25 @@
+.gradient-background {
+    background: linear-gradient(167deg,#0059d6,#00d685,#3aa1b9), #00d685;
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+}
+  
+@keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
 #complete-poster{
     display: none;
+    width: 210mm;
+    height: 297mm;
 }
 
 #download-button{
@@ -8,11 +28,22 @@
 
 #final-image{
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
 }
 
 #final-image > img{
-    width: 80%;
     margin: auto;
+    width: 80%;
     display: flex;
+}
+
+.results-container{
+    align-items: center;
+    margin: auto;
+}
+
+.text-container{
+    padding: 5% 0;
+    margin: 0 1%;
+    width: 45%;
 }

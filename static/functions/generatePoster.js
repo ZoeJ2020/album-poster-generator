@@ -1,8 +1,12 @@
-let alertPopup = document.getElementById('alert-desc');
-alertPopup.classList.add('alert-info');
+// define and reset alert elements for progress updates
+const alertHead = document.getElementById('alert-heading');
+const alertBody = document.getElementById('alert-desc');
+alertHead.innerText = "";
+alertBody.innerText = "";
 
 document.body.onload = function() {
-    alertPopup.innerHTML = "Generating poster...";
+    alertHead.innerText = "Generating poster...";
+    alertBody.innerText = "Your poster is being generated. Please wait";
 
     const albumCover = document.getElementById('cover-img');
 
@@ -27,6 +31,8 @@ document.body.onload = function() {
         setOrient();
         setSize();
         setTheme();
+        resizeText('tracklist');
+        resizeText('title');
 
         // Use html2canvas to take a screenshot of the poster container
         html2canvas(document.getElementById('poster-container')).then(canvas => {
@@ -34,6 +40,7 @@ document.body.onload = function() {
             // Append canvas to its own div for hiding after image creation
             let canvasDiv = document.getElementById('complete-poster');
             canvasDiv.appendChild(canvas);
+            alert(canvasDiv.style.width + ' ' + canvasDiv.style.height);
 
             // Turn canvas into image and put image in container
             document.getElementById('final-image').innerHTML = '';  // Clear previous content
@@ -48,11 +55,14 @@ document.body.onload = function() {
 
             // create link to download URL-ified canvas
             var link = document.createElement('a');
-            link.download = 'filename.png';
+            link.download = 'album-postify.png';
             link.href = canvasURL;
 
             // click link when download button is pressed
             downloadBtn.addEventListener("click", function(){ link.click(); });
+
+            alertHead.innerText = "Poster generated!";
+            alertBody.innerText = "Use the button provided to download.";
 
         });
 
@@ -70,8 +80,8 @@ document.body.onload = function() {
           text.style.fontSize = fontSize + 'px';
           text.offsetHeight;
         }
+        return
       }      
-
 
     // First, convert the album cover image to a Data URL
     convertToDataURL(albumCover.src, function(dataUrl) {
@@ -79,16 +89,10 @@ document.body.onload = function() {
         // After setting the data URL, check if the image is loaded
 
         albumCover.onload = function() {
-            resizeText('tracklist');
-            resizeText('title');
             generatePoster();  // Generate the poster after the image is loaded
 
             const poster = document.getElementById('poster-container');
             poster.style.display = "none";
-
-            alertPopup.classList.remove('alert-info')
-            alertPopup.classList.add('alert-success')
-            alertPopup.innerHTML = "Poster generated! Use the button provided to download the image, or right-click to 'Save Image As...'. Please do not sell or redistribute these images.";
         };
     });
 };
@@ -114,6 +118,8 @@ function setSize() {
     const poster = document.getElementById('poster-container');
     poster.style.width = width;
     poster.style.height = height;
+
+    alert(poster.style.cssText)
 }
 
 // Set dark/light theme

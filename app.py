@@ -2,7 +2,6 @@ from flask import Flask, request, render_template
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-# Function to find albums by name
 import concurrent.futures
 
 # Set environment variables for Spotipy

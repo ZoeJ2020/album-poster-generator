@@ -11,62 +11,52 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center" >Album Cover Generator 
-            <small class="text-body-secondary">
-                by <a href="https://www.zoejohnston.dev/" target="_blank" class="link-secondary">Zoe Johnston</a>
-            </small>
-        </h1>
-    </div>
-    <p class="lead text-center">
-        Powered by Spotipy, Flask and HTML/CSS
-    </p>
-
-    <div id="complete-poster"></div>
-    <span hidden id="orientation">{{orientation}}</span>
-    <span hidden id="theme">{{theme}}</span>
-    <div id="poster-container">
-        <div class="poster-top-container">
-            <div class="cover-container">
-                <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
-            </div>
-        </div>
-
-        <div class="poster-bottom-container">
-            <div id="title-container">
-                <h1 id="title">{{ title }}</h1>
-            </div>
-            <span class="secondary">{{year}} - {{ artist }}</span>
-            <div class="vr"></div>
-            <div id="tracklist-container">
-                <div id="tracklist">
-                    {% for track in tracks %}
-                        {{ track }} <strong>|</strong>
-                    {% endfor %}
+    <div>
+        <div id="complete-poster"></div>
+        <span hidden id="orientation">{{orientation}}</span>
+        <span hidden id="theme">{{theme}}</span>
+        <div id="poster-container">
+            <div class="poster-top-container">
+                <div class="cover-container">
+                    <img src="{{ image }}" alt="Album Cover" id="cover-img" crossorigin="anonymous"/>
                 </div>
-            </div> 
-        </div>
-        <footer class="footer mt-auto"><img id="spotify-logo" src="/static/logo/Spotify_Primary_Logo_RGB_Green.png"><p>made with albumpostify</p></footer>
-    </div>
-
-    <div class="results-container w-80 d-flex">
-        <div class="image-container w-50">
-            <div id="final-image"></div>
-        </div>
-        <div class="text-container w-50">
-            <h3 id="alert-heading"></h3>
-            <p id="alert-desc"></p>
-            <div id="option-container">
-                <button class="btn btn-primary d-inline" id="download-button">Download</button>
-                <form action="/" method="GET" class="d-inline">
-                    <button type="submit" class="btn btn-link">Go to homepage</button>
-                </form>
-                
-                 
             </div>
+    
+            <div class="poster-bottom-container">
+                <div id="title-container">
+                    <h1 id="title">{{ title }}</h1>
+                </div>
+                <span class="secondary">{{year}} - {{ artist }}</span>
+                <div class="vr"></div>
+                <div id="tracklist-container">
+                    <div id="tracklist">
+                        {% for track in tracks %}
+                            {{ track }} <strong>|</strong>
+                        {% endfor %}
+                    </div>
+                </div> 
+            </div>
+            <footer class="footer mt-auto"><img id="spotify-logo" src="/static/logo/Spotify_Primary_Logo_RGB_Green.png"><p>made with albumpostify</p></footer>
         </div>
+    
+        <div class="results-container d-flex m-auto">
+            <div class="image-container">
+                <div id="final-image"></div>
+            </div>
+            <div class="text-container text-center bg-light rounded">
+                <h3 id="alert-heading"></h3>
+                <p id="alert-desc"></p>
+                <div id="option-container">
+                    <button class="btn btn-primary d-inline" id="download-button">Download</button>
+                    <form action="/" method="GET" class="d-inline">
+                        <button type="submit" class="btn btn-link">Go to homepage</button>
+                    </form>
+                    
+                     
+                </div>
+            </div>
+        </div>    
     </div>
-
     <script src="/static/functions/generatePoster.js"></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>

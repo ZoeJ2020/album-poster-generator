@@ -21,8 +21,8 @@
   flex-direction: column;
   position: relative;
   font-family: posterLight !important;
-  font-size: 100%;
-  padding: 4.5% 6% 1.5% 6%;
+  font-size: 40px;
+  padding: 95px 120px 30px 120px;
 }  
 
 #cover-img{
@@ -34,38 +34,37 @@
 }
 
 .secondary{
-  margin: 20px 0 8px;
   font-family: posterLight !important;
   font-size: 20px;
+  padding: 0;
 }
 
 .vr{
   opacity: 1 !important;
   width: 100% !important;
   min-height: 7px !important;
+  display: flex !important;
 }
 
 #title-container{
   height: 55px;
-  margin-bottom: 4%;
 }
 
 #title{
   margin: 0;
   font-size: 26px;
-  padding: 0 0 0 0;
-  padding-top: 1%;
+  padding: 10px 0 0 0;
   font-family: posterBold;
 }
 
 #tracklist-container{
-  height: 140px;
+  height: 250px;
 }
 
 #tracklist{
-  font-size: 120%;
+  font-size: 16px;
   list-style-type: none;
-  padding: 4% 0 0 0;
+  padding: 20px 0 0 0;
 }
 
 #tracklist strong{
@@ -90,15 +89,18 @@ footer > p{
   margin-bottom: 0;
 }
 
-
 /* landscape poster CSS changes */
 #title-container.landscape > #title{
-  font-size: 38px
+  font-size: 38px;
+}
+
+.poster-bottom-container.landscape > #tracklist-container{
+  height: 325px;
 }
 
 .poster-top-container.landscape, .poster-bottom-container.landscape{
   width: 50%;
-  margin: 10% 1%;
+  margin: 60px 10px;
 }
 
 footer.landscape{

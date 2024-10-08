@@ -5,43 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Flask App</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/hero.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-        <h1 class="text-center" >Album Cover Generator 
-            <small class="text-body-secondary">
-                by <a href="https://www.zoejohnston.dev/" target="_blank" class="link-secondary">Zoe Johnston</a>
-            </small>
-        </h1>
-        <p class="lead text-center">
-            Powered by Spotipy, Flask and HTML/CSS
-        </p>
 
-        <div class="container mt-5">
-            <h1>Search albums</h1>
-            <form method="POST" action="/">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="user_input" name="user_input" required>
+        <div class="hero-container gradient-background d-flex " id="hero">
+            <header class="d-flex justify-content-center py-3 bg-transparent fixed-top">
+                <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#hero" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#search" class="nav-link">Generate</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#questions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      FAQs
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#albumpostify">What is albumpostify?</a></li>
+                      <li><a class="dropdown-item" href="#make">How do I make a poster?</a></li>
+                      <li><a class="dropdown-item" href="#noalbum" >I can't find the album I want to use</a></li>
+                      <li><a class="dropdown-item" href="#noartist" >I can't search by artist</a></li>
+                      <li><a class="dropdown-item" href="#print">Can I print my poster?</a></li>
+                      <li><a class="dropdown-item" href="#sell">Can I sell my poster?</a></li>
+                      <li><a class="dropdown-item" href="#spotipy" >What is Spotipy?</a></li>
+                    </ul>
+                </ul>
+            </header>
+            <div class="hero-text container align-middle m-auto ps-5 fade-in">
+                <header class="pt-2 pb-4">
+                    <h1 class="display-4">Albumpostify</h1>
+                    <div class="text-body-secondary small">
+                        by <a href="https://www.zoejohnston.dev/" target="_blank" class="link-light">Zoe Johnston</a>
+                    </div>
+                    <h3 class="display-6 pt-3" >Create beautiful posters from your favourite albums.</h2>
+               </header>
+               <div class="action-container pt-3">
+                <a href="#search" class="btn btn-primary btn-lg">Find Album</a>
+                <span class="text-body-secondary small">Powered by Spotipy</span>
+               </div>
+            </div>
+        </div>
+
+
+        <div class="container pt-5 mb-5 w-75" id="search">
+            <h5>Pick your album from Spotify</h5>
+            <form method="POST" action="/" class="row row-cols pt-2">
+                <div class="col-10">
+                    <input type="text" class="form-control" id="user_input" name="user_input" required placeholder="Enter album name...">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary inline">Submit</button>
+                </div>
             </form>
         </div>
 
         {% if user_input %}
-        <h2>
+        <h4 class="w-75 container">
             Results for "{{ user_input }}":
-        </h2>
+        </h4>
         {% endif %}
     
         {% if album_results is none and user_input %}
-        <div class="mt-3 alert alert-danger">
-            No albums found.
+        <div class="w-75 container mt-4 mb-5 p-5 d.flex justify-content-center text-center border">
+            <h5>No albums found</h5>
+            <p>Try a more specific name, a different album, or check for any misspellings.</p>
         </div>
         {% endif %}
 
         {% if album_results %}
-        <div class="mt-3 grid-container">
+        <div class="w-75 mt-4 mb-5 grid-container container">
             {% for album in album_results %}
             <div class="album_container grid-item">
                 <div class="image_container">
@@ -54,7 +85,7 @@
                     <p class="h6 album-info">{{ album.released }} &#8226; {{ album.artist }}</p>
                     <div class="button_container">
                         <button type="button" class="btn btn-generate" data-bs-toggle="modal" data-bs-target="#{{ album.album_id }}-poster">Generate</button>
-                        <a href="{{ album.url }}" target="_blank" class="btn btn-spotify"> PLAY ON SPOTIFY</a>
+                        <a href="{{ album.url }}" target="_blank" class="btn btn-spotify">GET SPOTIFY FREE</a>
                     </div>
 
                 </ul>
@@ -95,7 +126,7 @@
                                 <div class="poster-modal-display">
                                     <img src="/static/previews/pre-landscape-light.png" alt="" class="preview-image" id="preview-image-{{ album.album_id }}">
                                 </div>
-                                <div class="poster-modal-settings">
+                                <div class="poster-modal-settings my-5">
                                     <h2>Settings</h2>
                                     <!-- Form to generate the poster -->
                                     <form class="poster-form" id="poster-form" method="POST" action="/generate">
@@ -111,7 +142,7 @@
 
                                             <!-- User-interactive options -->
                                             <h3>Orientation</h3>
-                                            <div class="form-check">
+                                            <div class="form-check p-0">
                                                 <input type="radio" class="btn-check" name="orientation" value="landscape" id="option2-{{ album.album_id }}" autocomplete="off" checked>
                                                 <label class="btn btn-secondary" for="option2-{{ album.album_id }}">Landscape</label>
 
@@ -120,7 +151,7 @@
                                             </div>
 
                                             <h3>Background Color</h3>
-                                            <div class="form-check">
+                                            <div class="form-check p-0">
                                                 <input type="radio" class="btn-check" name="bg-color" value="light" id="option3-{{ album.album_id }}" autocomplete="off" checked>
                                                 <label class="btn btn-secondary" for="option3-{{ album.album_id }}">Light</label>
 
@@ -130,8 +161,6 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Generate</button>
                                     </form>
-                                    <div id="poster-container"></div>
-                                    <div id="img-container"></div>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -143,18 +172,91 @@
         </div>
         {% endif %}
 
-    </div>
+        <!-- FAQ Section -->
+        <div class="container w-75">
+           <div class="title-container">
+            <div class="h3">Frequently Asked Questions</div>
+            <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="albumpostify">
+                <div class="h4 py-2">What is Albumpostify?</div>
+                <p class="lead">
+                    Albumpostify is a website that provides posters based on your favourite albums.
+                </p>
+                <p>
+                    Simply find an album you like, click Generate, and tweak the poster's design to your liking. After generation, you can save your poster to your computer.
+                </p>
+                <p>
+                    For the highest quality poster, please click the “Download” button provided after generation instead of using “Save image As...”.
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="make">
+                <div class="h4 py-2" >How do I make a poster?</div>
+                <p class="lead">
+                    To make a poster, go to the <a href="#search">search bar</a> and search for an album. 
+                </p>
+                <p>
+                    When you find the album you want, click Generate. A popup will appear giving you different design options - choose whichever you prefer. After this stage, your poster will be created!
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="noalbum">
+                <div class="h4 py-2">I can't find the album I want to use via the search bar. Why?</div>
+                <p class="lead">
+                    You can only find albums that are available on Spotify using Albumpostify's search bar.
+                </p>
+                <p>
+                    If your desired album is not on Spotify, then that album is unfortunately unavailable.
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="noartist">
+                <div class="h4 py-2">I can't search by my desired artist. Why?</div>
+                <p class="lead">
+                    Currently you can only search depending on the album name, not the artist.
+                </p>
+                <p>
+                    More search options will become available in future updates.
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="print">
+                <div class="h4 py-2">Can I print my poster?</div>
+                <p class="lead">
+                    Yes, you can print your poster after downloading. 
+                </p>
+                <p>
+                    You can use it for journaling, as a poster in your room, or for whatever methods you choose to express your creativity.
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5" id="sell">
+                <div class="h4 py-2">Can I sell my poster?</div>
+                <p class="lead">
+                    Since the generated posters contain metadata from Spotify's music library, you <b>cannot sell or generate revenue </b> from the use of the poster designs.
+                </p>
+                <p>
+                    For more information, please view Spotify for Developers' <a href="https://developer.spotify.com/compliance-tips#commercial-use" target="_blank">commercial use cases.</a>
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+            <div class="question-container pt-5 pb-5" id="spotipy">
+                <div class="h4 py-2">What is Spotipy?</div>
+                <p class="lead">
+                    Spotipy is a free Python-based library that Albumpostify uses to fetch album data through Spotify's Web API.
+                </p>
+                <p>
+                    It accesses Spotify's music library to search for albums and other information (artists, images, tracks, etc.).
+                </p>
+                <p>
+                    If you are a developer and are interested in using Spotipy, please view their official documentation <a href="https://spotipy.readthedocs.io/en/2.24.0/" target="_blank">here</a> for more information.
+                </p>
+                <div class="vr w-100 m-auto d-flex"></div>
+            </div>
+        </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/static/functions/posterPreview.js"></script>
-    <!-- <script src="/static/functions/generatePoster.js"></script> -->
-    <script>
-        const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', () => {
-        myInput.focus()
-        })
-    </script>  
 </body>
 </html>

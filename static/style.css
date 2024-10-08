@@ -6,6 +6,18 @@ body {
     color: #212529;
 }
 
+.nav-link{
+    color: #212529 !important;
+}
+
+.active{
+    background-color: #f8f9fa !important;
+}
+
+.vr{
+    min-height: 1px !important;
+}
+
 .album_list{
     display: flex;
 }
@@ -81,22 +93,33 @@ a:hover {
     text-decoration: none;
 }
 
-.poster-modal-display{
-    min-width: 500px;
-    min-height: 500px;
-    align-content: center;
-}
-
-.poster-modal-container > *{
-    width: 50%;
-}
-
 .preview-image{
     /* default CSS - will change using JS */
     width: 500px;
     background-color: #F6F7FA;
     display: flex;
     margin: auto;
+}
+
+.modal-body{
+    display: flex;
+}
+
+.poster-modal-container{
+    width: 100%;
+}
+
+.poster-modal-display{
+    margin: auto 0;
+    width: 60%;
+}
+
+.modal-content{
+    height: 90vh;
+}
+
+.poster-modal-settings{
+    width: 40%;
 }
 
 /* Small devices (landscape phones, 576px and up) */
