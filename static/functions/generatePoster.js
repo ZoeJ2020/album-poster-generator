@@ -40,7 +40,6 @@ document.body.onload = function() {
             // Append canvas to its own div for hiding after image creation
             let canvasDiv = document.getElementById('complete-poster');
             canvasDiv.appendChild(canvas);
-            alert(canvasDiv.style.width + ' ' + canvasDiv.style.height);
 
             // Turn canvas into image and put image in container
             document.getElementById('final-image').innerHTML = '';  // Clear previous content
@@ -63,6 +62,13 @@ document.body.onload = function() {
 
             alertHead.innerText = "Poster generated!";
             alertBody.innerText = "Use the button provided to download.";
+
+            const overlay = document.getElementById('overlay');
+            overlay.style.animationName = "fadeOut";
+
+            overlay.addEventListener('animationend', () => {
+                overlay.style.display = 'none';
+            });
 
         });
 
@@ -118,8 +124,6 @@ function setSize() {
     const poster = document.getElementById('poster-container');
     poster.style.width = width;
     poster.style.height = height;
-
-    alert(poster.style.cssText)
 }
 
 // Set dark/light theme

@@ -59,7 +59,7 @@
         </div>
 
         {% if user_input %}
-        <h4 class="w-75 container">
+        <h4 class="w-100 container">
             Results for "{{ user_input }}":
         </h4>
         {% endif %}
@@ -72,7 +72,7 @@
         {% endif %}
 
         {% if album_results %}
-        <div class="w-75 mt-4 mb-5 grid-container container">
+        <div class="w-100 mt-4 mb-5 grid-container container">
             {% for album in album_results %}
             <div class="album_container grid-item">
                 <div class="image_container">
@@ -94,7 +94,7 @@
             <!-- Modal for track list -->
             <div class="modal fade" id="{{ album.album_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content h-100">
                     <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tracks in {{ album.title }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -122,26 +122,26 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="poster-modal-container d-flex">
+                            <div class="poster-modal-container">
                                 <div class="poster-modal-display">
                                     <img src="/static/previews/pre-landscape-light.png" alt="" class="preview-image" id="preview-image-{{ album.album_id }}">
                                 </div>
-                                <div class="poster-modal-settings my-5">
+                                <div class="poster-modal-settings m-auto">
                                     <h2>Settings</h2>
                                     <!-- Form to generate the poster -->
-                                    <form class="poster-form" id="poster-form" method="POST" action="/generate">
-                                        <div class="form-group">
-                                            <!-- hidden album info -->
-                                            <input type="hidden" name="album_image" value="{{ album.image }}">
-                                            <input type="hidden" name="album_title" value="{{ album.title }}">
-                                            <input type="hidden" name="album_released" value="{{ album.released }}">
-                                            <input type="hidden" name="album_artist" value="{{ album.artist }}">
-                                            {% for track in album.track_list %}
-                                                <input type="hidden" name="track_list" value="{{ track }}">
-                                            {% endfor %}
+                                    <form class="poster-form m-auto" id="poster-form" method="POST" action="/generate">
+                                        <!-- hidden album info -->
+                                        <input type="hidden" name="album_image" value="{{ album.image }}">
+                                        <input type="hidden" name="album_title" value="{{ album.title }}">
+                                        <input type="hidden" name="album_released" value="{{ album.released }}">
+                                        <input type="hidden" name="album_artist" value="{{ album.artist }}">
+                                        {% for track in album.track_list %}
+                                            <input type="hidden" name="track_list" value="{{ track }}">
+                                        {% endfor %}
 
-                                            <!-- User-interactive options -->
-                                            <h3>Orientation</h3>
+                                        <!-- User-interactive options -->
+                                        <div class="form-group py-2">
+                                            <h4>Orientation</h4>
                                             <div class="form-check p-0">
                                                 <input type="radio" class="btn-check" name="orientation" value="landscape" id="option2-{{ album.album_id }}" autocomplete="off" checked>
                                                 <label class="btn btn-secondary" for="option2-{{ album.album_id }}">Landscape</label>
@@ -149,8 +149,10 @@
                                                 <input type="radio" class="btn-check" name="orientation" value="portrait" id="option1-{{ album.album_id }}" autocomplete="off">
                                                 <label class="btn btn-secondary" for="option1-{{ album.album_id }}">Portrait</label>
                                             </div>
+                                        </div>
 
-                                            <h3>Background Color</h3>
+                                        <div class="form-group py-2">
+                                            <h4>Background Color</h4>
                                             <div class="form-check p-0">
                                                 <input type="radio" class="btn-check" name="bg-color" value="light" id="option3-{{ album.album_id }}" autocomplete="off" checked>
                                                 <label class="btn btn-secondary" for="option3-{{ album.album_id }}">Light</label>
@@ -159,7 +161,7 @@
                                                 <label class="btn btn-secondary" for="option4-{{ album.album_id }}">Dark</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Generate</button>
+                                        <button type="submit" class="submit btn btn-primary">Generate</button>
                                     </form>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 </div>
@@ -222,12 +224,12 @@
                 <div class="vr w-100 m-auto d-flex"></div>
             </div>
             <div class="question-container pt-5" id="print">
-                <div class="h4 py-2">Can I print my poster?</div>
+                <div class="h4 py-2">Can I print my poster for personal use?</div>
                 <p class="lead">
-                    Yes, you can print your poster after downloading. 
+                    Yes, you can print your poster for personal use after downloading it from Albumpostify. 
                 </p>
                 <p>
-                    You can use it for journaling, as a poster in your room, or for whatever methods you choose to express your creativity.
+                    You can use it for journaling, as a poster in your room, etc.
                 </p>
                 <div class="vr w-100 m-auto d-flex"></div>
             </div>

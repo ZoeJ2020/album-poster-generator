@@ -11,7 +11,15 @@
     </script>
 </head>
 <body>
-    <div>
+    <div id="overlay" class="justify-content-center">
+        <div class="overlay-text m-auto text-center">
+            <div class="spinner-border" role="status">
+                <div class="sr-only"></div>
+            </div>
+            <p>Generating your poster, please wait a moment.</p>
+        </div>
+    </div>
+    <div class="vw-100 vh-100 gradient-background">
         <div id="complete-poster"></div>
         <span hidden id="orientation">{{orientation}}</span>
         <span hidden id="theme">{{theme}}</span>
@@ -39,11 +47,11 @@
             <footer class="footer mt-auto"><img id="spotify-logo" src="/static/logo/Spotify_Primary_Logo_RGB_Green.png"><p>made with albumpostify</p></footer>
         </div>
     
-        <div class="results-container d-flex m-auto">
-            <div class="image-container">
+        <div class="results-container">
+            <div class="image-container w-50">
                 <div id="final-image"></div>
             </div>
-            <div class="text-container text-center bg-light rounded">
+             <div class="text-container text-center bg-light rounded">
                 <h3 id="alert-heading"></h3>
                 <p id="alert-desc"></p>
                 <div id="option-container">

@@ -7,7 +7,8 @@ function updatePreview(event) {
     previewImg.src = '/static/previews/pre-' + orient + '-' + theme + '.png';
 
     previewImg.style.backgroundColor = (theme === 'light') ? "rgb(246, 247, 250)" : "rgb(30, 31, 33)";
-    previewImg.style.width = (orient === 'landscape') ? "500px" : "8cm";
+    previewImg.style.width = (orient === 'landscape') ? "100%" : "auto";
+    previewImg.style.height = (orient === 'portrait') ? "60vh" : "auto";
 
 }
 
