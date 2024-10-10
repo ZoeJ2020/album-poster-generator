@@ -19,10 +19,11 @@
 #poster-container{
   display: flex;
   flex-direction: column;
-  position: relative;
   font-family: posterLight !important;
   font-size: 40px;
   padding: 95px 120px 30px 120px;
+  position: fixed;
+  top: 200%;
 }  
 
 #cover-img{
