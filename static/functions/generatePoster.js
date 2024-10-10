@@ -35,7 +35,7 @@ document.body.onload = function() {
         resizeText('title');
 
         // Use html2canvas to take a screenshot of the poster container
-        html2canvas(document.getElementById('poster-container')).then(canvas => {
+        html2canvas(document.getElementById('poster-container'), {scale: 2}).then(canvas => {
 
             // Append canvas to its own div for hiding after image creation
             let canvasDiv = document.getElementById('complete-poster');
@@ -54,7 +54,7 @@ document.body.onload = function() {
 
             // create link to download URL-ified canvas
             var link = document.createElement('a');
-            link.download = 'album-postify.png';
+            link.download = 'album-postify.pdf';
             link.href = canvasURL;
 
             // click link when download button is pressed
@@ -71,8 +71,6 @@ document.body.onload = function() {
             });
 
         });
-
-
     }
 
     function resizeText(name) {
