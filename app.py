@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template
+from dotenv import load_dotenv
 import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import concurrent.futures
 
 # Set environment variables for Spotipy
+load_dotenv()
 ID : str = os.getenv('SPOTIPY_CLIENT_ID')
 SECRET : str = os.getenv('SPOTIPY_CLIENT_SECRET')
 
